@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.demo.comment.dao.mapper.CommentMapper">
+
+    <sql id="select_column_list">
+        `id`,`content`,`author_id`,`create_time`
+    </sql>
+
+    <select id="selectOneById" resultType="CommentDO">
+        select
+        <include refid="select_column_list"/>
+        from comment
+        where id = #{id,jdbcType=BIGINT} limit 1;
+    </select>
+
+    <sql id="save_column_list">
+        `content`,`author_id`
+    </sql>
+
+    <insert id="save" parameterType="CommentDO" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        insert into comment (<include refid="save_column_list"/>)
+        values
+        (
+        #{content,jdbcType=VARCHAR},
+        #{authorId,jdbcType=BIGINT}
+        )
+    </insert>
+
+    <delete id="deleteOneById" >
+        delete from comment where id =#{id,jdbcType=BIGINT}
+    </delete>
+
+</mapper>
