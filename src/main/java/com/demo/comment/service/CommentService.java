@@ -4,4 +4,6 @@ import com.demo.comment.entity.CommentDTO;
 
 public interface CommentService {
     Long makeComment(CommentDTO comment);
+
+    void delete(Long id);
 }

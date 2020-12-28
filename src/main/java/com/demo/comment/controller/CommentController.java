@@ -24,7 +24,7 @@ public class CommentController {
     private CommentService commentService;
 
     @PostMapping(value = "/makeComment", produces = APPLICATION_JSON_VALUE)
-    public ResponseDTO savePushContent(@RequestBody CommentDTO comment) {
+    public ResponseDTO makeComment(@RequestBody CommentDTO comment) {
         if (logger.isDebugEnabled()) {
             logger.debug("CommentDTO: {}",comment);
         }
@@ -32,7 +32,21 @@ public class CommentController {
             long id = commentService.makeComment(comment);
             return ResponseDTO.success(id);
         } catch (Exception e) {
-            logger.error("serverError when save pushContent", e);
+            logger.error("serverError when save comment", e);
+            return ResponseDTO.fail(ResponseCode.SERVER_ERROR.getCode(), ResponseCode.SERVER_ERROR.getMessage());
+        }
+    }
+
+    @PostMapping(value = "/delete", produces = APPLICATION_JSON_VALUE)
+    public ResponseDTO delete(Long id) {
+        if (logger.isDebugEnabled()) {
+            logger.debug("delete comment id: {}",id);
+        }
+        try {
+            commentService.delete(id);
+            return ResponseDTO.success(true);
+        } catch (Exception e) {
+            logger.error("serverError when delete comment", e);
             return ResponseDTO.fail(ResponseCode.SERVER_ERROR.getCode(), ResponseCode.SERVER_ERROR.getMessage());
         }
     }
