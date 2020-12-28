@@ -9,11 +9,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
-
 @Service
 public class CommentServiceImpl implements CommentService {
-    Logger logger = LoggerFactory.getLogger(CommentService.class);
+    private static final Logger logger = LoggerFactory.getLogger(CommentService.class);
 
     @Autowired
     private CommentDao commentDao;
@@ -21,12 +19,6 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public Long makeComment(CommentDTO comment) {
         return commentDao.save(new CommentDO(comment.getAuthorId(), comment.getContent()));
-    }
-
-    @PostConstruct
-    public void test() {
-        logger.info("this is info");
-        logger.debug("this is debug");
     }
 
 }
