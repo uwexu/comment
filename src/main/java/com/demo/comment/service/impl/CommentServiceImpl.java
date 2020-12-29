@@ -15,7 +15,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public Long makeComment(CommentDTO comment) {
-        return commentDao.save(new CommentDO(comment.getAuthorId(), comment.getContent()));
+        return commentDao.save(new CommentDO(comment.getAuthorId(), comment.getDocId(), comment.getContent()));
     }
 
     @Override

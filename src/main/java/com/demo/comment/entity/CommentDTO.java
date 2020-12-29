@@ -10,4 +10,5 @@ import lombok.ToString;
 public class CommentDTO {
     private Long authorId;
     private String content;
+    private Long   docId;
 }
