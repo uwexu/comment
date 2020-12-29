@@ -23,4 +23,12 @@ public class CommentDO {
         this.docId = docId;
         this.content = content;
     }
+
+    public CommentDO(Long id, String content, Long authorId, Long docId, Date createTime) {
+        this.id = id;
+        this.content = content;
+        this.authorId = authorId;
+        this.docId = docId;
+        this.createTime = createTime;
+    }
 }

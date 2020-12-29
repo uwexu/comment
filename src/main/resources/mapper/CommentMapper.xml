@@ -10,7 +10,9 @@
         select
         <include refid="select_column_list"/>
         from comment
-        where doc_id = #{docId,jdbcType=BIGINT} desc order by id limit #{start}, #{end};
+        where doc_id = #{docId,jdbcType=BIGINT}
+        order by id
+        desc limit #{start}, #{end}
     </select>
 
     <sql id="save_column_list">

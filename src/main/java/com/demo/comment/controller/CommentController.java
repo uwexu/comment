@@ -30,7 +30,7 @@ public class CommentController {
     @PostMapping(value = "/makeComment", produces = APPLICATION_JSON_VALUE)
     public ResponseDTO makeComment(@RequestBody CommentDTO comment) {
         if (logger.isDebugEnabled()) {
-            logger.debug("CommentDTO: {}",comment);
+            logger.debug("CommentDTO:{}",comment);
         }
         try {
             long id = commentService.makeComment(comment);
@@ -44,7 +44,7 @@ public class CommentController {
     @PostMapping(value = "/listByDocId", produces = APPLICATION_JSON_VALUE)
     public ResponseDTO listByDocId(long docId, int pageNum, int pageSize) {
         if (logger.isDebugEnabled()) {
-            logger.debug("docId: {}",docId);
+            logger.debug("docId:{}, pageNum:{}, pageSize:{}", docId, pageNum, pageSize);
         }
         try {
             List<CommentDO> list = commentService.listByDocId(docId, pageNum, pageSize);
@@ -59,7 +59,7 @@ public class CommentController {
     @PostMapping(value = "/delete", produces = APPLICATION_JSON_VALUE)
     public ResponseDTO delete(long id) {
         if (logger.isDebugEnabled()) {
-            logger.debug("delete comment id: {}",id);
+            logger.debug("delete comment id:{}",id);
         }
         try {
             commentService.delete(id);
