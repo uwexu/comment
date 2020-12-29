@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 
@@ -39,13 +42,13 @@ public class CommentController {
     }
 
     @PostMapping(value = "/listByDocId", produces = APPLICATION_JSON_VALUE)
-    public ResponseDTO listByDocId(Long docId) {
+    public ResponseDTO listByDocId(long docId, int pageNum, int pageSize) {
         if (logger.isDebugEnabled()) {
             logger.debug("docId: {}",docId);
         }
         try {
-            CommentDO comment = commentService.listByDocId(docId);
-            return ResponseDTO.success(comment);
+            List<CommentDO> list = commentService.listByDocId(docId, pageNum, pageSize);
+            return ResponseDTO.success(list);
         } catch (Exception e) {
             logger.error("serverError when list comments", e);
             return ResponseDTO.fail(ResponseCode.SERVER_ERROR.getCode(), ResponseCode.SERVER_ERROR.getMessage());
@@ -54,7 +57,7 @@ public class CommentController {
 
 
     @PostMapping(value = "/delete", produces = APPLICATION_JSON_VALUE)
-    public ResponseDTO delete(Long id) {
+    public ResponseDTO delete(long id) {
         if (logger.isDebugEnabled()) {
             logger.debug("delete comment id: {}",id);
         }

@@ -5,6 +5,8 @@ import com.demo.comment.dao.mapper.CommentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CommentDao {
 
@@ -16,11 +18,11 @@ public class CommentDao {
         return comment.getId();
     }
 
-    public CommentDO selectByDocId(Long docId) {
-        return commentMapper.selectByDocId(docId);
+    public List<CommentDO> selectByDocId(long docId, int start, int end) {
+        return commentMapper.selectByDocId(docId, start, end);
     }
 
-    public void deleteOneById(Long id) {
+    public void deleteOneById(long id) {
         commentMapper.deleteOneById(id);
     }
 

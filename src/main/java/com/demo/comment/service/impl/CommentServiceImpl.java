@@ -7,6 +7,8 @@ import com.demo.comment.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CommentServiceImpl implements CommentService {
 
@@ -19,12 +21,12 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public CommentDO listByDocId(Long docId) {
-        return commentDao.selectByDocId(docId);
+    public List<CommentDO> listByDocId(long docId, int pageNum, int pageSize) {
+        return commentDao.selectByDocId(docId, (pageNum-1)*pageSize, pageSize);
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(long id) {
         commentDao.deleteOneById(id);
     }
 
