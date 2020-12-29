@@ -16,8 +16,8 @@ public class CommentDao {
         return comment.getId();
     }
 
-    public CommentDO selectOneById(Long id) {
-        return commentMapper.selectOneById(id);
+    public CommentDO selectByDocId(Long docId) {
+        return commentMapper.selectByDocId(docId);
     }
 
     public void deleteOneById(Long id) {

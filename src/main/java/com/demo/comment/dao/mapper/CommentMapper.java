@@ -7,7 +7,7 @@ public interface CommentMapper {
 
     void save(CommentDO  comment);
 
-    CommentDO selectOneById(@Param(value = "id") long id);
+    CommentDO selectByDocId(@Param(value = "docId") long docId);
 
     void deleteOneById(@Param(value = "id") long id);
 
