@@ -1,6 +1,7 @@
 package com.demo.comment.controller;
 
 import com.demo.comment.constant.ResponseCode;
+import com.demo.comment.dao.entity.CommentDO;
 import com.demo.comment.entity.CommentDTO;
 import com.demo.comment.entity.ResponseDTO;
 import com.demo.comment.service.CommentService;
@@ -36,6 +37,21 @@ public class CommentController {
             return ResponseDTO.fail(ResponseCode.SERVER_ERROR.getCode(), ResponseCode.SERVER_ERROR.getMessage());
         }
     }
+
+    @PostMapping(value = "/listByDocId", produces = APPLICATION_JSON_VALUE)
+    public ResponseDTO listByDocId(Long docId) {
+        if (logger.isDebugEnabled()) {
+            logger.debug("docId: {}",docId);
+        }
+        try {
+            CommentDO comment = commentService.listByDocId(docId);
+            return ResponseDTO.success(comment);
+        } catch (Exception e) {
+            logger.error("serverError when list comments", e);
+            return ResponseDTO.fail(ResponseCode.SERVER_ERROR.getCode(), ResponseCode.SERVER_ERROR.getMessage());
+        }
+    }
+
 
     @PostMapping(value = "/delete", produces = APPLICATION_JSON_VALUE)
     public ResponseDTO delete(Long id) {

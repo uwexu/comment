@@ -19,6 +19,11 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
+    public CommentDO listByDocId(Long docId) {
+        return commentDao.selectByDocId(docId);
+    }
+
+    @Override
     public void delete(Long id) {
         commentDao.deleteOneById(id);
     }
