@@ -1,6 +1,7 @@
 package com.demo.comment.dao.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -16,6 +17,7 @@ public class CommentDO {
     private String content;
     private Long authorId;
     private Long docId;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     public CommentDO(Long authorId, Long docId, String content) {
@@ -31,4 +33,5 @@ public class CommentDO {
         this.docId = docId;
         this.createTime = createTime;
     }
+
 }
